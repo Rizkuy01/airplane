@@ -18,7 +18,7 @@
             <div class="card text-bg-dark mb-3 bg-opacity-75 p-4">
                 <div class="container text-light">
                     <h1 class="text-center">Fly High!</h1>
-                    <h5 class="text-center fst-italic">Jadwalkan Penerbanganmu menggapai masa depan</h5>  
+                    <h5 class="text-center fst-italic">Jadwalkan Penerbanganmu menggapai angkasa!</h5>  
                     <div class="hero d-flex justify-content-center">
                         <a href="jadwal.php" class="btn btn-secondary m-2">Cek Penerbangan</a>
                         <a href="daftar.php" class="btn btn-primary m-2">Beli Tiket</a>

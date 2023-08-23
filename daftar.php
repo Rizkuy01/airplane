@@ -106,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 background-position: center;
             }
         </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
         <div class="main w-80 d-flex align-items-center justify-content-center min-vh-100">
@@ -122,14 +123,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h5 class="card-header">Pendaftaran Penumpang</h5>
                     <div class="row p-2">
                         <div class="card-body">
-                            <form action="daftar.php" method="post">
+                            <form action="daftar.php" method="post" id="flight-form">
                                 <div class="row">
                                     <div class="col-md-6">
 
                                         <!-- Pilih Bandara Awal -->
                                         <div class="mb-3 text-start">
                                             <label for="exampleInputDeparture" class="form-label">Bandara Awal</label>
-                                            <select class="form-select" name="departure" aria-label="Default select example">
+                                            <select class="form-select" name="departure" aria-label="Default select example" required>
                                                 <option value="" selected>Pilih Bandara Awal</option>
                                                 <?php foreach ($BandaraAsal as $departure) {
                                                     echo "<option value='" . $departure . "'>" . $departure . "</option>";
@@ -141,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <!-- Bandara Tujuan -->
                                         <div class="mb-3 text-start">
                                             <label for="exampleInputDestination" class="form-label">Bandara Tujuan</label>
-                                            <select class="form-select" name="destinate" aria-label="Default select example">
+                                            <select class="form-select" name="destinate" aria-label="Default select example" required>
                                                 <option value="" selected>Pilih Bandara Tujuan</option>
                                                 <?php foreach ($BandaraTujuan as $arrival) {
                                                     echo "<option value='" . $arrival . "'>" . $arrival . "</option>";
@@ -156,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <!-- Pilih Maskapai -->
                                         <div class="mb-3 text-start">
                                             <label for="exampleInputPlane" class="form-label">Maskapai</label>
-                                            <select class="form-select" aria-label="Default select example" name="maskapai">
+                                            <select class="form-select" aria-label="Default select example" name="maskapai" required>
                                                 <option selected>Pilih Maskapai</option>
                                                 <option value="Adam Air">Adam Air</option>
                                                 <option value="Batik Air">Batik Air</option>
@@ -168,8 +169,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <!-- Harga Tiket -->
                                         <div class="mb-3 text-start">
                                             <label for="exampleInputTiket" class="form-label">Harga Tiket</label>
-                                            <input type="text" class="form-control" id="exampleInputTiket" name="harga" aria-describedby="tiketHelp">
-
+                                            <select class="form-select" aria-label="Default select example" name="harga" required>
+                                                <option selected>Pilih Kelas</option>
+                                                <option value="500000">Ekonomi &#40; Rp500.000 &#41;</option>
+                                                <option value="700000">Bisnis &#40; Rp700.00 &#41;</option>
+                                                <option value="1000000">First Class &#40; Rp1.000.000 &#41;</option>
+                                            </select>
+                                            <!-- <input type="text" class="form-control" id="exampleInputTiket" name="harga" aria-describedby="tiketHelp"> -->
                                         </div>
 
                                     </div>
@@ -177,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                                 <div class="button">
                                     <a href="index.php" class="btn btn-danger mb-4">Cancel</a>
-                                    <button type="submit" name="submit" class="btn btn-primary mb-4 ">Let's Fly!</button>
+                                    <button type="submit" name="submit" class="btn btn-primary mb-4" id="fly-button">Let's Fly!</button>
                                 </div>
                             </form>
                         </div>
@@ -206,5 +212,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            $('#fly-button').on('click', function(){
+                Swal.fire(
+            'Datamu sudah masuk!',
+            '<a href="jadwal.php">Cek Penerbanganmu</a>',
+            'success'
+            )
+            })
+        </script>
     </body>
 </html>
