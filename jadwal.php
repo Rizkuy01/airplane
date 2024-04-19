@@ -9,7 +9,7 @@
 
     <style>
         .main {
-                background-image: url('https://wallpaperaccess.com/full/3101441.jpg'); /* Ganti dengan path gambar Anda */
+                background-image: url('https://wallpaperaccess.com/full/3101441.jpg');
                 background-size: cover;
                 background-position: center;
             }

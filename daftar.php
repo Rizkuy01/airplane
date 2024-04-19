@@ -19,17 +19,17 @@ $BandaraTujuan = [
 ];
 
 $pajakBandaraAsal = [
-    'Soekarno-Hatta (CGK)'      => 50000, 
-    'Husein Sastranegara (BDO)' => 30000,
+    'Soekarno-Hatta (CGK)'      => 65000, 
+    'Husein Sastranegara (BDO)' => 50000,
     'Abdul Rachman Saleh (MLG)' => 40000,
-    'Juanda (SUB)'              => 40000
+    'Juanda (SUB)'              => 30000
 ];
 
 $pajakBandaraTujuan = [
-    'Ngurah Rai (DPS)'              => 80000,
+    'Ngurah Rai (DPS)'              => 85000,
     'Hasanuddin (UPG)'              => 70000,
     'Inanwatan (INX)'               => 90000,
-    'Sultan Iskandar Muda (BTJ)'    => 70000
+    'Sultan Iskandar Muda (BTJ)'    => 60000
 ];
 
 // fungsi menghitung pajak bandara
@@ -52,9 +52,6 @@ function hitungPajak($BandaraAsal, $BandaraTujuan) {
     }
 
     return $value1 + $value2;
-
-    // $totalPajak = $pajakBandaraAsal[$BandaraAsal] + $pajakBandaraTujuan[$BandaraTujuan];
-    // return $totalPajak;
 }
 
 // fungsi menghitung total biaya penerbangan
@@ -112,12 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="main w-80 d-flex align-items-center justify-content-center min-vh-100">
             <div class="container w-50 text-center">
 
-                <h1 class="text-center text-light">
-                    Fly High!
-                </h1>
-                <h5 class="text-center fst-italic mb-4 text-light">
-                    Jadwalkan Penerbanganmu menggapai masa depan
-                </h5> 
+            <h1 class="text-center text-light" style="text-shadow: 4px 4px 2px rgba(0, 0, 0, 1);">
+                Fly High!
+            </h1>
+            <h5 class="text-center fst-italic mb-4 text-light" style="text-shadow: 4px 4px 2px rgba(0, 0, 0, 1);">
+                Jadwalkan Penerbanganmu menggapai masa depan
+            </h5>
+
                 
                 <div class="card text-bg-light bg-opacity-75">
                     <h5 class="card-header">Pendaftaran Penumpang</h5>
@@ -172,17 +170,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <select class="form-select" aria-label="Default select example" name="harga" required>
                                                 <option selected>Pilih Kelas</option>
                                                 <option value="500000">Ekonomi &#40; Rp500.000 &#41;</option>
-                                                <option value="700000">Bisnis &#40; Rp700.00 &#41;</option>
+                                                <option value="700000">Bisnis &#40; Rp700.000 &#41;</option>
                                                 <option value="1000000">First Class &#40; Rp1.000.000 &#41;</option>
                                             </select>
-                                            <!-- <input type="text" class="form-control" id="exampleInputTiket" name="harga" aria-describedby="tiketHelp"> -->
                                         </div>
 
                                     </div>
                                 </div>
 
                                 <div class="button">
-                                    <a href="index.php" class="btn btn-danger mb-4">Cancel</a>
+                                    <a href="index.php" class="btn btn-danger mb-4">Back</a>
                                     <button type="submit" name="submit" class="btn btn-primary mb-4" id="fly-button">Let's Fly!</button>
                                 </div>
                             </form>
@@ -201,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $destinate = $_POST['destinate'];
             $hargaTiket = $_POST['harga'];
             $totalTax = hitungPajak($departure, $destinate);
-            $totalTiket = totalBiaya($totalTax, $hargaTiket) ;
+            $totalTiket = totalBiaya($totalTax, $hargaTiket);
 
             $rutePenerbangan = [$maskapai, $departure, $destinate, $hargaTiket, $totalTax, $totalTiket];
             array_push($all, $rutePenerbangan);
@@ -214,13 +211,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            $('#fly-button').on('click', function(){
+
+        //     // Tambahkan event listener untuk menangkap submit form
+        // document.getElementById('flight-form').addEventListener('submit', function(event) {
+        // // Mencegah perilaku default dari event submit
+        // event.preventDefault();
+
+    // Tambahkan kode untuk menampilkan SweetAlert atau melakukan operasi lainnya di sini
+    $('#fly-button').on('click', function(){
                 Swal.fire(
             'Datamu sudah masuk!',
             '<a href="jadwal.php">Cek Penerbanganmu</a>',
             'success'
             )
             })
+// });
+
+            
         </script>
     </body>
 </html>
